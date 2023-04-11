@@ -1,0 +1,208 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище Model" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="prodaga">
+          <Key>
+            <PropertyRef Name="id_tovar" />
+          </Key>
+          <Property Name="tabl_nomer" Type="int" />
+          <Property Name="id_tovar" Type="int" Nullable="false" />
+          <Property Name="data_zakaza" Type="date" />
+          <Property Name="id_klient" Type="nvarchar" MaxLength="50" />
+          <Property Name="kolvo" Type="int" />
+        </EntityType>
+        <EntityType Name="sotrudniki">
+          <Key>
+            <PropertyRef Name="tabl_nomer" />
+          </Key>
+          <Property Name="tabl_nomer" Type="int" Nullable="false" />
+          <Property Name="fio" Type="nvarchar" MaxLength="50" />
+          <Property Name="id_dolgnost" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tovar">
+          <Key>
+            <PropertyRef Name="id_tovar" />
+          </Key>
+          <Property Name="id_tovar" Type="int" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" />
+          <Property Name="cena" Type="nvarchar" MaxLength="50" />
+          <Property Name="kol_vo" Type="nvarchar" MaxLength="50" />
+          <Property Name="ekran" Type="nvarchar" MaxLength="50" />
+          <Property Name="ves" Type="nvarchar" MaxLength="50" />
+          <Property Name="procesor" Type="nvarchar" MaxLength="50" />
+          <Property Name="ozy" Type="nvarchar" MaxLength="50" />
+          <Property Name="pamat" Type="nvarchar" MaxLength="50" />
+          <Property Name="batarea" Type="nvarchar" MaxLength="50" />
+          <Property Name="camera" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="log" />
+          </Key>
+          <Property Name="log" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="pass" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="User1">
+          <Key>
+            <PropertyRef Name="Login" />
+          </Key>
+          <Property Name="Login" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="FIO" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="Хранилище ModelContainer">
+          <EntitySet Name="prodaga" EntityType="Self.prodaga" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sotrudniki" EntityType="Self.sotrudniki" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tovar" EntityType="Self.tovar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User1" EntityType="Self.User1" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="prodaga">
+          <Key>
+            <PropertyRef Name="id_tovar" />
+          </Key>
+          <Property Name="tabl_nomer" Type="Int32" />
+          <Property Name="id_tovar" Type="Int32" Nullable="false" />
+          <Property Name="data_zakaza" Type="DateTime" Precision="0" />
+          <Property Name="id_klient" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="kolvo" Type="Int32" />
+        </EntityType>
+        <EntityType Name="sotrudniki">
+          <Key>
+            <PropertyRef Name="tabl_nomer" />
+          </Key>
+          <Property Name="tabl_nomer" Type="Int32" Nullable="false" />
+          <Property Name="fio" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="id_dolgnost" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tovar">
+          <Key>
+            <PropertyRef Name="id_tovar" />
+          </Key>
+          <Property Name="id_tovar" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="cena" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="kol_vo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ekran" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ves" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="procesor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ozy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="pamat" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="batarea" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="camera" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="log" />
+          </Key>
+          <Property Name="log" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="pass" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="User1">
+          <Key>
+            <PropertyRef Name="Login" />
+          </Key>
+          <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FIO" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="DB123Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="prodaga" EntityType="Self.prodaga" />
+          <EntitySet Name="sotrudniki" EntityType="Self.sotrudniki" />
+          <EntitySet Name="tovar" EntityType="Self.tovar" />
+          <EntitySet Name="User" EntityType="Self.User" />
+          <EntitySet Name="User1" EntityType="Self.User1" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище ModelContainer" CdmEntityContainer="DB123Entities">
+          <EntitySetMapping Name="prodaga">
+            <EntityTypeMapping TypeName="Model.prodaga">
+              <MappingFragment StoreEntitySet="prodaga">
+                <ScalarProperty Name="tabl_nomer" ColumnName="tabl_nomer" />
+                <ScalarProperty Name="id_tovar" ColumnName="id_tovar" />
+                <ScalarProperty Name="data_zakaza" ColumnName="data_zakaza" />
+                <ScalarProperty Name="id_klient" ColumnName="id_klient" />
+                <ScalarProperty Name="kolvo" ColumnName="kolvo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sotrudniki">
+            <EntityTypeMapping TypeName="Model.sotrudniki">
+              <MappingFragment StoreEntitySet="sotrudniki">
+                <ScalarProperty Name="tabl_nomer" ColumnName="tabl_nomer" />
+                <ScalarProperty Name="fio" ColumnName="fio" />
+                <ScalarProperty Name="id_dolgnost" ColumnName="id_dolgnost" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tovar">
+            <EntityTypeMapping TypeName="Model.tovar">
+              <MappingFragment StoreEntitySet="tovar">
+                <ScalarProperty Name="id_tovar" ColumnName="id_tovar" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="cena" ColumnName="cena" />
+                <ScalarProperty Name="kol_vo" ColumnName="kol_vo" />
+                <ScalarProperty Name="ekran" ColumnName="ekran" />
+                <ScalarProperty Name="ves" ColumnName="ves" />
+                <ScalarProperty Name="procesor" ColumnName="procesor" />
+                <ScalarProperty Name="ozy" ColumnName="ozy" />
+                <ScalarProperty Name="pamat" ColumnName="pamat" />
+                <ScalarProperty Name="batarea" ColumnName="batarea" />
+                <ScalarProperty Name="camera" ColumnName="camera" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User">
+            <EntityTypeMapping TypeName="Model.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="log" ColumnName="log" />
+                <ScalarProperty Name="pass" ColumnName="pass" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User1">
+            <EntityTypeMapping TypeName="Model.User1">
+              <MappingFragment StoreEntitySet="User1">
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="FIO" ColumnName="FIO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

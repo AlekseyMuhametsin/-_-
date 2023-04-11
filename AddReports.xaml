@@ -1,0 +1,98 @@
+﻿<Page x:Class="КП_МДК._03.AddReports"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:КП_МДК._03"
+      mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="800"
+      Title="AddReports">
+
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="16*"/>
+            <RowDefinition Height="251*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="0*"/>
+        </Grid.ColumnDefinitions>
+        <Image Source="Drawings/admin.png" HorizontalAlignment="Left" Width="61" Margin="226,7,0,0" RenderTransformOrigin="-0.208,0.547" Grid.RowSpan="2" Height="65" VerticalAlignment="Top">
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="0.818"/>
+                    <TranslateTransform X="-0.037" Y="-0.606"/>
+                </TransformGroup>
+            </Image.RenderTransform>
+        </Image>
+        <TextBlock Text="Окно Табельщика" FontSize="36" HorizontalAlignment="Left" VerticalAlignment="Top" FontFamily="Franklin Gothic Heavy" Foreground="Black" FontWeight="Bold" TextDecorations="{x:Null}" Height="48" Width="332" Margin="283,10,0,0" Grid.RowSpan="2" />
+        <Border BorderBrush="#FF0514F4" BorderThickness="1" HorizontalAlignment="Center" Height="71" VerticalAlignment="Top" Width="800" Grid.RowSpan="2"/>
+        <Button x:Name="ButtonPersonnel" Click="ButtonPersonnelClick" Margin="10,8,0,0" BorderBrush="#FF0514F4" Background="White" Foreground="Black" Grid.RowSpan="2" HorizontalAlignment="Left" Width="70" Height="54" VerticalAlignment="Top">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </Button.Resources>
+            <StackPanel Orientation="Horizontal" Height="52">
+                <Image Source="Drawings/personnel.png" Width="56" Height="46"/>
+            </StackPanel>
+        </Button>
+        <Button x:Name="ButtonTimesheet" Click="ButtonTimesheetlClick" Margin="117,8,0,0" BorderBrush="#FF0514F4" Background="White" Height="54" VerticalAlignment="Top" HorizontalAlignment="Left" Width="70" Grid.RowSpan="2">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </Button.Resources>
+            <StackPanel Orientation="Horizontal" Height="52">
+                <Image Source="Drawings/timesheet.png" Width="54" Height="46"/>
+            </StackPanel>
+        </Button>
+        <Button x:Name="ButtonArchive" Click="ButtonArchivelClick" Margin="620,9,0,0" BorderBrush="#FF0514F4" Background="White" Height="54" VerticalAlignment="Top" Grid.RowSpan="2" HorizontalAlignment="Left" Width="70">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </Button.Resources>
+            <StackPanel Orientation="Horizontal" Height="52">
+                <Image Source="Drawings/archive.png" Width="54" Height="46" RenderTransformOrigin="0.574,0.5"/>
+            </StackPanel>
+        </Button>
+        <Button x:Name="ButtonRegistration" Click="ButtonRegistrationClick" Margin="720,10,0,0" BorderBrush="#FF0514F4" Background="White" Height="52" VerticalAlignment="Top" Grid.RowSpan="2" HorizontalAlignment="Left" Width="70">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </Button.Resources>
+            <StackPanel Orientation="Horizontal" Height="52">
+                <Image Source="Drawings/salary.png" Width="62" Height="47"/>
+            </StackPanel>
+        </Button>
+        <TextBlock Text="Добавление данных" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="30" FontFamily="Comic Sans MS" Width="800" TextAlignment="Center" FontWeight="Bold" Margin="0,40,0,0" Height="46" Grid.Row="1" Foreground="#FF0514F4" />
+        <TextBlock Text="о явке на рабочее место сотрудника" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="30" FontFamily="Comic Sans MS" Width="800" TextAlignment="Center" FontWeight="Bold" Margin="0,65,0,0" Height="46" Grid.Row="1" Foreground="#FF0514F4" />
+        <TextBlock Text="Пожалуйста введите точные данные о сотруднике" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,111,0,0" FontFamily="Comic Sans MS" Width="800" TextAlignment="Center" FontSize="16" Foreground="#FF756363" Height="28" Grid.Row="1" />
+
+        <TextBlock Text="Сотрудник" HorizontalAlignment="Right" VerticalAlignment="Top" FontSize="30" Margin="0,169,411,0" FontFamily="Comic Sans MS" Width="238" RenderTransformOrigin="0.503,0.513" Height="39" Grid.Row="1" Foreground="#FF0514F4" TextAlignment="Right" />
+        <TextBlock Text="Явка на рабочее место" HorizontalAlignment="Right" VerticalAlignment="Top" FontSize="30" Margin="0,216,411,0" FontFamily="Comic Sans MS" Width="321" Height="42" Grid.Row="1" Foreground="#FF0514F4" TextAlignment="Right" />
+        <TextBlock Text="День (цифра)" HorizontalAlignment="Right" VerticalAlignment="Top" FontSize="30" Margin="0,263,411,0" FontFamily="Comic Sans MS" Width="238" Height="42" Grid.Row="1" Foreground="#FF0514F4" TextAlignment="Right" />
+        <TextBlock Text="Часы" HorizontalAlignment="Right" VerticalAlignment="Top" FontSize="30" Margin="0,310,411,0" FontFamily="Comic Sans MS" Width="238" Height="42" Grid.Row="1" Foreground="#FF0514F4" TextAlignment="Right" />
+        <TextBlock Text="Месяц" HorizontalAlignment="Right" VerticalAlignment="Top" FontSize="30" Margin="0,357,411,0" FontFamily="Comic Sans MS" Width="238" Height="42" Grid.Row="1" Foreground="#FF0514F4" TextAlignment="Right" />
+        <TextBox  Margin="0,310,111,0" TextWrapping="Wrap" Text="{Binding HoursAccounting}" Name="TextDen" FontFamily="Comic Sans MS" FontSize="24" Foreground="#FF5D5151"  Grid.Row="1" Height="42" VerticalAlignment="Top" HorizontalAlignment="Right" Width="291" BorderBrush="Black"/>
+        <TextBox  Margin="0,263,111,0" TextWrapping="Wrap" Text="{Binding DaysAccounting}" Name="TextChas" FontFamily="Comic Sans MS" FontSize="24" Foreground="#FF5D5151"  Grid.Row="1" Height="42" VerticalAlignment="Top" HorizontalAlignment="Right" Width="291" BorderBrush="Black"/>
+        <Button Content="Добавить" Name="ButtonFinished" Width="304" Height="35" Margin="0,502,0,0" Click="ButtonFinishedClick" FontFamily="Comic Sans MS" FontSize="24" Background="#FF0514F4" Foreground="#FFF7F3F3" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Row="1">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="10" />
+                </Style>
+            </Button.Resources>
+        </Button>
+        <ComboBox x:Name="ComboBoxDayCode" Text="{Binding DayCodeAccounting}"  DisplayMemberPath="Letter" HorizontalAlignment="Right" Margin="0,216,111,0" Grid.Row="1" Width="291" Height="42" VerticalAlignment="Top" BorderBrush="Black" OpacityMask="Black" SelectionChanged="ComboBoxCode_SelectionChanged" FontFamily="Comic Sans MS" FontSize="24"/>
+        <ComboBox x:Name="ComboBoxInitials"  DisplayMemberPath="Initials" HorizontalAlignment="Right" Margin="0,169,111,0" Grid.Row="1" Width="290" Height="42" VerticalAlignment="Top" BorderBrush="Black" OpacityMask="Black" SelectionChanged="ComboBoxTN_SelectionChanged" FontFamily="Comic Sans MS" FontSize="24"/>
+        <ComboBox x:Name="ComboBoxMonth" Text="{Binding MonthAccounting}"  DisplayMemberPath="MeaningMonth" HorizontalAlignment="Right" Margin="0,357,111,0" Grid.Row="1" Width="290" Height="42" VerticalAlignment="Top" BorderBrush="Black" OpacityMask="Black" SelectionChanged="ComboBoxMonth_SelectionChanged" FontFamily="Comic Sans MS" FontSize="24"/>
+
+        <Border Name="borderosh" Margin="10,447,-10,0" Visibility="Hidden"  OpacityMask="#FFFF0404" Grid.Row="1" Height="50" VerticalAlignment="Top" HorizontalAlignment="Center" Width="800" Grid.ColumnSpan="2" >
+            <Label Content="Данные о явке добавлены!" Foreground="Red" FontSize="20" FontFamily="Comic Sans MS" Margin="267,0,0,0" HorizontalAlignment="Left" Width="533"/>
+        </Border>
+    </Grid>
+</Page>

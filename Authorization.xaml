@@ -1,0 +1,48 @@
+﻿<Window x:Class="КП_МДК._03.Authorization"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:КП_МДК._03"
+        mc:Ignorable="d"
+        Title="ТабельTime" Height="600" Width="650" Icon="/Drawings/Logo4.png">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0*"/>
+            <ColumnDefinition Width="113*"/>
+            <ColumnDefinition Width="537*"/>
+        </Grid.ColumnDefinitions>
+        <Image Source="Drawings/Logo2.png" HorizontalAlignment="Left" Width="275" Margin="84,10,0,322" Grid.Column="2">
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="1"/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Image.RenderTransform>
+        </Image>
+        <TextBlock Text="Пожалуйста ведите Логин и Пароль для авторизации" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="-4,196,0,0" FontFamily="Comic Sans MS" Width="658" TextAlignment="Center" FontSize="20" Foreground="#FF0A0707" Grid.ColumnSpan="3" Height="28" />
+        <TextBlock Text="Авторизация" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="30" FontFamily="Comic Sans MS" Width="654" TextAlignment="Center" FontWeight="Bold" Margin="-2,229,0,0" Grid.ColumnSpan="3" Height="42" />
+        <Border Name="borderosh" Grid.ColumnSpan="3" Margin="10,276,10,185" Visibility="Hidden"  OpacityMask="#FFFF0404" >
+            <Label Content="Введен неправильный логин или пароль" Foreground="Red" FontSize="20" FontFamily="Comic Sans MS" Margin="116,0,0,0"/>
+        </Border>
+        <TextBlock Text="Логин" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="30" Margin="74,326,0,0" FontFamily="Comic Sans MS" Width="124" TextAlignment="Center" RenderTransformOrigin="0.503,0.513" Grid.Column="1" Height="42" Grid.ColumnSpan="2" ></TextBlock>
+        <TextBlock Text="Пароль" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="30" Margin="74,387,0,0" FontFamily="Comic Sans MS" Width="142" TextAlignment="Center" Height="42" Grid.Column="1" Grid.ColumnSpan="2" ></TextBlock>
+        <TextBox IsMouseCapturedChanged="TextBLogin_IsMouseCapturedChanged" Margin="132,326,104,138" TextWrapping="Wrap" Text="Логин" Name="TextBLogin" FontFamily="Comic Sans MS" FontSize="24" Foreground="#FF5D5151" TextChanged="TextBLogin_TextChanged" Grid.Column="2"/>
+        <PasswordBox  IsMouseCapturedChanged="TextBParol_IsMouseCapturedChanged"  Margin="132,387,104,77"  Password="Пароль" Name="TextBParol" FontFamily="Comic Sans MS" FontSize="24" Foreground="#FF5D5151" Grid.Column="2"/>
+        <Button Content="Войти" Name="ButtonLogin" Width="258" Height="35" Margin="0,0,182,4" Click="ButtonLoginClick" FontFamily="Comic Sans MS" FontSize="24" Background="#FF0514F4" Foreground="#FFF7F3F3" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="10" />
+                </Style>
+            </Button.Resources>
+        </Button>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="506"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+    </Grid>
+</Window>

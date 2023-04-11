@@ -1,0 +1,925 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище BD_KP" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AbsentForAReason">
+          <Key>
+            <PropertyRef Name="NumberAbsence" />
+          </Key>
+          <Property Name="NumberAbsence" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PersonnelNumberAbsence" Type="int" Nullable="false" />
+          <Property Name="CodeAbsence" Type="int" Nullable="false" />
+          <Property Name="DaysAbsence" Type="int" Nullable="false" />
+          <Property Name="HoursAbsence" Type="int" Nullable="false" />
+          <Property Name="MonthAbsence" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AccountingForWorkingHours">
+          <Key>
+            <PropertyRef Name="NumberAccounting" />
+          </Key>
+          <Property Name="NumberAccounting" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PersonnelNumberAccounting" Type="int" Nullable="false" />
+          <Property Name="DaysAccounting" Type="int" Nullable="false" />
+          <Property Name="DayCodeAccounting" Type="int" Nullable="false" />
+          <Property Name="HoursAccounting" Type="int" Nullable="false" />
+          <Property Name="MonthAccounting" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DataForPayroll">
+          <Key>
+            <PropertyRef Name="NumberSalary" />
+          </Key>
+          <Property Name="NumberSalary" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PersonnelNumberSalary" Type="int" Nullable="false" />
+          <Property Name="PaymentTypeCodeSalary" Type="int" Nullable="false" />
+          <Property Name="OffsettingAccountSalary" Type="int" Nullable="false" />
+          <Property Name="MonthSalary" Type="int" Nullable="false" />
+          <Property Name="DaysSalary" Type="int" Nullable="false" />
+          <Property Name="HoursSalary" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DayCode">
+          <Key>
+            <PropertyRef Name="Sign" />
+          </Key>
+          <Property Name="Sign" Type="int" Nullable="false" />
+          <Property Name="Letter" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Decryption" Type="varchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Decryption">
+          <Key>
+            <PropertyRef Name="MeaningDecryption" />
+          </Key>
+          <Property Name="MeaningDecryption" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="MeaningDepartment" />
+          </Key>
+          <Property Name="MeaningDepartment" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HoursMonthlySummary">
+          <Key>
+            <PropertyRef Name="NumberSum" />
+          </Key>
+          <Property Name="NumberSum" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PersonnelNumberSum" Type="int" Nullable="false" />
+          <Property Name="MonthSum" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="SumDays" Type="int" Nullable="false" />
+          <Property Name="SumHours" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Month">
+          <Key>
+            <PropertyRef Name="MeaningMonth" />
+          </Key>
+          <Property Name="MeaningMonth" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OffsettingAccount">
+          <Key>
+            <PropertyRef Name="CodeOffsettingAccount" />
+          </Key>
+          <Property Name="CodeOffsettingAccount" Type="int" Nullable="false" />
+          <Property Name="DecryptionOffsettingAccount" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PaymentTypeCode">
+          <Key>
+            <PropertyRef Name="PaymentType" />
+          </Key>
+          <Property Name="PaymentType" Type="int" Nullable="false" />
+          <Property Name="DecryptionPaymentType" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="Role" />
+          </Key>
+          <Property Name="Role" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Staff">
+          <Key>
+            <PropertyRef Name="PersonnelNumber" />
+          </Key>
+          <Property Name="PersonnelNumber" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Initials" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="DecryptionStaff" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="PositionStaff" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="DepartmentStaff" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserNumber" />
+          </Key>
+          <Property Name="UserNumber" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Login" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="FIOUser" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="RoleUser" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_AbsentForAReason_DayCode">
+          <End Role="DayCode" Type="Self.DayCode" Multiplicity="1" />
+          <End Role="AbsentForAReason" Type="Self.AbsentForAReason" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DayCode">
+              <PropertyRef Name="Sign" />
+            </Principal>
+            <Dependent Role="AbsentForAReason">
+              <PropertyRef Name="CodeAbsence" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AbsentForAReason_Month">
+          <End Role="Month" Type="Self.Month" Multiplicity="1" />
+          <End Role="AbsentForAReason" Type="Self.AbsentForAReason" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Month">
+              <PropertyRef Name="MeaningMonth" />
+            </Principal>
+            <Dependent Role="AbsentForAReason">
+              <PropertyRef Name="MonthAbsence" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AbsentForAReason_Staff">
+          <End Role="Staff" Type="Self.Staff" Multiplicity="1" />
+          <End Role="AbsentForAReason" Type="Self.AbsentForAReason" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff">
+              <PropertyRef Name="PersonnelNumber" />
+            </Principal>
+            <Dependent Role="AbsentForAReason">
+              <PropertyRef Name="PersonnelNumberAbsence" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AccountingForWorkingHours_DayCode">
+          <End Role="DayCode" Type="Self.DayCode" Multiplicity="1" />
+          <End Role="AccountingForWorkingHours" Type="Self.AccountingForWorkingHours" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DayCode">
+              <PropertyRef Name="Sign" />
+            </Principal>
+            <Dependent Role="AccountingForWorkingHours">
+              <PropertyRef Name="DayCodeAccounting" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AccountingForWorkingHours_Month">
+          <End Role="Month" Type="Self.Month" Multiplicity="1" />
+          <End Role="AccountingForWorkingHours" Type="Self.AccountingForWorkingHours" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Month">
+              <PropertyRef Name="MeaningMonth" />
+            </Principal>
+            <Dependent Role="AccountingForWorkingHours">
+              <PropertyRef Name="MonthAccounting" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AccountingForWorkingHours_Staff">
+          <End Role="Staff" Type="Self.Staff" Multiplicity="1" />
+          <End Role="AccountingForWorkingHours" Type="Self.AccountingForWorkingHours" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff">
+              <PropertyRef Name="PersonnelNumber" />
+            </Principal>
+            <Dependent Role="AccountingForWorkingHours">
+              <PropertyRef Name="PersonnelNumberAccounting" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DataForPayroll_HoursMonthlySummary">
+          <End Role="HoursMonthlySummary" Type="Self.HoursMonthlySummary" Multiplicity="1" />
+          <End Role="DataForPayroll" Type="Self.DataForPayroll" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HoursMonthlySummary">
+              <PropertyRef Name="NumberSum" />
+            </Principal>
+            <Dependent Role="DataForPayroll">
+              <PropertyRef Name="MonthSalary" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DataForPayroll_OffsettingAccount">
+          <End Role="OffsettingAccount" Type="Self.OffsettingAccount" Multiplicity="1" />
+          <End Role="DataForPayroll" Type="Self.DataForPayroll" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OffsettingAccount">
+              <PropertyRef Name="CodeOffsettingAccount" />
+            </Principal>
+            <Dependent Role="DataForPayroll">
+              <PropertyRef Name="OffsettingAccountSalary" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DataForPayroll_PaymentTypeCode">
+          <End Role="PaymentTypeCode" Type="Self.PaymentTypeCode" Multiplicity="1" />
+          <End Role="DataForPayroll" Type="Self.DataForPayroll" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PaymentTypeCode">
+              <PropertyRef Name="PaymentType" />
+            </Principal>
+            <Dependent Role="DataForPayroll">
+              <PropertyRef Name="PaymentTypeCodeSalary" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DataForPayroll_Staff">
+          <End Role="Staff" Type="Self.Staff" Multiplicity="1" />
+          <End Role="DataForPayroll" Type="Self.DataForPayroll" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff">
+              <PropertyRef Name="PersonnelNumber" />
+            </Principal>
+            <Dependent Role="DataForPayroll">
+              <PropertyRef Name="PersonnelNumberSalary" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HoursMonthlySummary_Month">
+          <End Role="Month" Type="Self.Month" Multiplicity="1" />
+          <End Role="HoursMonthlySummary" Type="Self.HoursMonthlySummary" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Month">
+              <PropertyRef Name="MeaningMonth" />
+            </Principal>
+            <Dependent Role="HoursMonthlySummary">
+              <PropertyRef Name="MonthSum" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HoursMonthlySummary_Staff">
+          <End Role="Staff" Type="Self.Staff" Multiplicity="1" />
+          <End Role="HoursMonthlySummary" Type="Self.HoursMonthlySummary" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff">
+              <PropertyRef Name="PersonnelNumber" />
+            </Principal>
+            <Dependent Role="HoursMonthlySummary">
+              <PropertyRef Name="PersonnelNumberSum" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Staff_Decryption">
+          <End Role="Decryption" Type="Self.Decryption" Multiplicity="1" />
+          <End Role="Staff" Type="Self.Staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Decryption">
+              <PropertyRef Name="MeaningDecryption" />
+            </Principal>
+            <Dependent Role="Staff">
+              <PropertyRef Name="DecryptionStaff" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Staff_Department">
+          <End Role="Department" Type="Self.Department" Multiplicity="1" />
+          <End Role="Staff" Type="Self.Staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="MeaningDepartment" />
+            </Principal>
+            <Dependent Role="Staff">
+              <PropertyRef Name="DepartmentStaff" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="Role" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="RoleUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище BD_KPContainer">
+          <EntitySet Name="AbsentForAReason" EntityType="Self.AbsentForAReason" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AccountingForWorkingHours" EntityType="Self.AccountingForWorkingHours" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DataForPayroll" EntityType="Self.DataForPayroll" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DayCode" EntityType="Self.DayCode" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Decryption" EntityType="Self.Decryption" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Department" EntityType="Self.Department" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HoursMonthlySummary" EntityType="Self.HoursMonthlySummary" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Month" EntityType="Self.Month" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OffsettingAccount" EntityType="Self.OffsettingAccount" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PaymentTypeCode" EntityType="Self.PaymentTypeCode" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Staff" EntityType="Self.Staff" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_AbsentForAReason_DayCode" Association="Self.FK_AbsentForAReason_DayCode">
+            <End Role="DayCode" EntitySet="DayCode" />
+            <End Role="AbsentForAReason" EntitySet="AbsentForAReason" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AbsentForAReason_Month" Association="Self.FK_AbsentForAReason_Month">
+            <End Role="Month" EntitySet="Month" />
+            <End Role="AbsentForAReason" EntitySet="AbsentForAReason" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AbsentForAReason_Staff" Association="Self.FK_AbsentForAReason_Staff">
+            <End Role="Staff" EntitySet="Staff" />
+            <End Role="AbsentForAReason" EntitySet="AbsentForAReason" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AccountingForWorkingHours_DayCode" Association="Self.FK_AccountingForWorkingHours_DayCode">
+            <End Role="DayCode" EntitySet="DayCode" />
+            <End Role="AccountingForWorkingHours" EntitySet="AccountingForWorkingHours" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AccountingForWorkingHours_Month" Association="Self.FK_AccountingForWorkingHours_Month">
+            <End Role="Month" EntitySet="Month" />
+            <End Role="AccountingForWorkingHours" EntitySet="AccountingForWorkingHours" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AccountingForWorkingHours_Staff" Association="Self.FK_AccountingForWorkingHours_Staff">
+            <End Role="Staff" EntitySet="Staff" />
+            <End Role="AccountingForWorkingHours" EntitySet="AccountingForWorkingHours" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DataForPayroll_HoursMonthlySummary" Association="Self.FK_DataForPayroll_HoursMonthlySummary">
+            <End Role="HoursMonthlySummary" EntitySet="HoursMonthlySummary" />
+            <End Role="DataForPayroll" EntitySet="DataForPayroll" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DataForPayroll_OffsettingAccount" Association="Self.FK_DataForPayroll_OffsettingAccount">
+            <End Role="OffsettingAccount" EntitySet="OffsettingAccount" />
+            <End Role="DataForPayroll" EntitySet="DataForPayroll" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DataForPayroll_PaymentTypeCode" Association="Self.FK_DataForPayroll_PaymentTypeCode">
+            <End Role="PaymentTypeCode" EntitySet="PaymentTypeCode" />
+            <End Role="DataForPayroll" EntitySet="DataForPayroll" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DataForPayroll_Staff" Association="Self.FK_DataForPayroll_Staff">
+            <End Role="Staff" EntitySet="Staff" />
+            <End Role="DataForPayroll" EntitySet="DataForPayroll" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HoursMonthlySummary_Month" Association="Self.FK_HoursMonthlySummary_Month">
+            <End Role="Month" EntitySet="Month" />
+            <End Role="HoursMonthlySummary" EntitySet="HoursMonthlySummary" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HoursMonthlySummary_Staff" Association="Self.FK_HoursMonthlySummary_Staff">
+            <End Role="Staff" EntitySet="Staff" />
+            <End Role="HoursMonthlySummary" EntitySet="HoursMonthlySummary" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Staff_Decryption" Association="Self.FK_Staff_Decryption">
+            <End Role="Decryption" EntitySet="Decryption" />
+            <End Role="Staff" EntitySet="Staff" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Staff_Department" Association="Self.FK_Staff_Department">
+            <End Role="Department" EntitySet="Department" />
+            <End Role="Staff" EntitySet="Staff" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Role" Association="Self.FK_User_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BD_KP" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AbsentForAReason">
+          <Key>
+            <PropertyRef Name="NumberAbsence" />
+          </Key>
+          <Property Name="NumberAbsence" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PersonnelNumberAbsence" Type="Int32" Nullable="false" />
+          <Property Name="CodeAbsence" Type="Int32" Nullable="false" />
+          <Property Name="DaysAbsence" Type="Int32" Nullable="false" />
+          <Property Name="HoursAbsence" Type="Int32" Nullable="false" />
+          <Property Name="MonthAbsence" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="DayCode" Relationship="Self.FK_AbsentForAReason_DayCode" FromRole="AbsentForAReason" ToRole="DayCode" />
+          <NavigationProperty Name="Month" Relationship="Self.FK_AbsentForAReason_Month" FromRole="AbsentForAReason" ToRole="Month" />
+          <NavigationProperty Name="Staff" Relationship="Self.FK_AbsentForAReason_Staff" FromRole="AbsentForAReason" ToRole="Staff" />
+        </EntityType>
+        <EntityType Name="AccountingForWorkingHours">
+          <Key>
+            <PropertyRef Name="NumberAccounting" />
+          </Key>
+          <Property Name="NumberAccounting" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PersonnelNumberAccounting" Type="Int32" Nullable="false" />
+          <Property Name="DaysAccounting" Type="Int32" Nullable="false" />
+          <Property Name="DayCodeAccounting" Type="Int32" Nullable="false" />
+          <Property Name="HoursAccounting" Type="Int32" Nullable="false" />
+          <Property Name="MonthAccounting" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="DayCode" Relationship="Self.FK_AccountingForWorkingHours_DayCode" FromRole="AccountingForWorkingHours" ToRole="DayCode" />
+          <NavigationProperty Name="Month" Relationship="Self.FK_AccountingForWorkingHours_Month" FromRole="AccountingForWorkingHours" ToRole="Month" />
+          <NavigationProperty Name="Staff" Relationship="Self.FK_AccountingForWorkingHours_Staff" FromRole="AccountingForWorkingHours" ToRole="Staff" />
+        </EntityType>
+        <EntityType Name="DataForPayroll">
+          <Key>
+            <PropertyRef Name="NumberSalary" />
+          </Key>
+          <Property Name="NumberSalary" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PersonnelNumberSalary" Type="Int32" Nullable="false" />
+          <Property Name="PaymentTypeCodeSalary" Type="Int32" Nullable="false" />
+          <Property Name="OffsettingAccountSalary" Type="Int32" Nullable="false" />
+          <Property Name="MonthSalary" Type="Int32" Nullable="false" />
+          <Property Name="DaysSalary" Type="Int32" Nullable="false" />
+          <Property Name="HoursSalary" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="HoursMonthlySummary" Relationship="Self.FK_DataForPayroll_HoursMonthlySummary" FromRole="DataForPayroll" ToRole="HoursMonthlySummary" />
+          <NavigationProperty Name="OffsettingAccount" Relationship="Self.FK_DataForPayroll_OffsettingAccount" FromRole="DataForPayroll" ToRole="OffsettingAccount" />
+          <NavigationProperty Name="PaymentTypeCode" Relationship="Self.FK_DataForPayroll_PaymentTypeCode" FromRole="DataForPayroll" ToRole="PaymentTypeCode" />
+          <NavigationProperty Name="Staff" Relationship="Self.FK_DataForPayroll_Staff" FromRole="DataForPayroll" ToRole="Staff" />
+        </EntityType>
+        <EntityType Name="DayCode">
+          <Key>
+            <PropertyRef Name="Sign" />
+          </Key>
+          <Property Name="Sign" Type="Int32" Nullable="false" />
+          <Property Name="Letter" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Decryption" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="AbsentForAReason" Relationship="Self.FK_AbsentForAReason_DayCode" FromRole="DayCode" ToRole="AbsentForAReason" />
+          <NavigationProperty Name="AccountingForWorkingHours" Relationship="Self.FK_AccountingForWorkingHours_DayCode" FromRole="DayCode" ToRole="AccountingForWorkingHours" />
+        </EntityType>
+        <EntityType Name="Decryption">
+          <Key>
+            <PropertyRef Name="MeaningDecryption" />
+          </Key>
+          <Property Name="MeaningDecryption" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Staff" Relationship="Self.FK_Staff_Decryption" FromRole="Decryption" ToRole="Staff" />
+        </EntityType>
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="MeaningDepartment" />
+          </Key>
+          <Property Name="MeaningDepartment" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Staff" Relationship="Self.FK_Staff_Department" FromRole="Department" ToRole="Staff" />
+        </EntityType>
+        <EntityType Name="HoursMonthlySummary">
+          <Key>
+            <PropertyRef Name="NumberSum" />
+          </Key>
+          <Property Name="NumberSum" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PersonnelNumberSum" Type="Int32" Nullable="false" />
+          <Property Name="MonthSum" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SumDays" Type="Int32" Nullable="false" />
+          <Property Name="SumHours" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="DataForPayroll" Relationship="Self.FK_DataForPayroll_HoursMonthlySummary" FromRole="HoursMonthlySummary" ToRole="DataForPayroll" />
+          <NavigationProperty Name="Month" Relationship="Self.FK_HoursMonthlySummary_Month" FromRole="HoursMonthlySummary" ToRole="Month" />
+          <NavigationProperty Name="Staff" Relationship="Self.FK_HoursMonthlySummary_Staff" FromRole="HoursMonthlySummary" ToRole="Staff" />
+        </EntityType>
+        <EntityType Name="Month">
+          <Key>
+            <PropertyRef Name="MeaningMonth" />
+          </Key>
+          <Property Name="MeaningMonth" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="AbsentForAReason" Relationship="Self.FK_AbsentForAReason_Month" FromRole="Month" ToRole="AbsentForAReason" />
+          <NavigationProperty Name="AccountingForWorkingHours" Relationship="Self.FK_AccountingForWorkingHours_Month" FromRole="Month" ToRole="AccountingForWorkingHours" />
+          <NavigationProperty Name="HoursMonthlySummary" Relationship="Self.FK_HoursMonthlySummary_Month" FromRole="Month" ToRole="HoursMonthlySummary" />
+        </EntityType>
+        <EntityType Name="OffsettingAccount">
+          <Key>
+            <PropertyRef Name="CodeOffsettingAccount" />
+          </Key>
+          <Property Name="CodeOffsettingAccount" Type="Int32" Nullable="false" />
+          <Property Name="DecryptionOffsettingAccount" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="DataForPayroll" Relationship="Self.FK_DataForPayroll_OffsettingAccount" FromRole="OffsettingAccount" ToRole="DataForPayroll" />
+        </EntityType>
+        <EntityType Name="PaymentTypeCode">
+          <Key>
+            <PropertyRef Name="PaymentType" />
+          </Key>
+          <Property Name="PaymentType" Type="Int32" Nullable="false" />
+          <Property Name="DecryptionPaymentType" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="DataForPayroll" Relationship="Self.FK_DataForPayroll_PaymentTypeCode" FromRole="PaymentTypeCode" ToRole="DataForPayroll" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="Role1" />
+          </Key>
+          <Property Name="Role1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="Self.FK_User_Role" FromRole="Role" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Staff">
+          <Key>
+            <PropertyRef Name="PersonnelNumber" />
+          </Key>
+          <Property Name="PersonnelNumber" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Initials" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DecryptionStaff" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PositionStaff" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DepartmentStaff" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="AbsentForAReason" Relationship="Self.FK_AbsentForAReason_Staff" FromRole="Staff" ToRole="AbsentForAReason" />
+          <NavigationProperty Name="AccountingForWorkingHours" Relationship="Self.FK_AccountingForWorkingHours_Staff" FromRole="Staff" ToRole="AccountingForWorkingHours" />
+          <NavigationProperty Name="DataForPayroll" Relationship="Self.FK_DataForPayroll_Staff" FromRole="Staff" ToRole="DataForPayroll" />
+          <NavigationProperty Name="Decryption" Relationship="Self.FK_Staff_Decryption" FromRole="Staff" ToRole="Decryption" />
+          <NavigationProperty Name="Department" Relationship="Self.FK_Staff_Department" FromRole="Staff" ToRole="Department" />
+          <NavigationProperty Name="HoursMonthlySummary" Relationship="Self.FK_HoursMonthlySummary_Staff" FromRole="Staff" ToRole="HoursMonthlySummary" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserNumber" />
+          </Key>
+          <Property Name="UserNumber" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FIOUser" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RoleUser" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Role" Relationship="Self.FK_User_Role" FromRole="User" ToRole="Role" />
+        </EntityType>
+        <Association Name="FK_AbsentForAReason_DayCode">
+          <End Role="DayCode" Type="Self.DayCode" Multiplicity="1" />
+          <End Role="AbsentForAReason" Type="Self.AbsentForAReason" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DayCode">
+              <PropertyRef Name="Sign" />
+            </Principal>
+            <Dependent Role="AbsentForAReason">
+              <PropertyRef Name="CodeAbsence" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AbsentForAReason_Month">
+          <End Role="Month" Type="Self.Month" Multiplicity="1" />
+          <End Role="AbsentForAReason" Type="Self.AbsentForAReason" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Month">
+              <PropertyRef Name="MeaningMonth" />
+            </Principal>
+            <Dependent Role="AbsentForAReason">
+              <PropertyRef Name="MonthAbsence" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AbsentForAReason_Staff">
+          <End Role="Staff" Type="Self.Staff" Multiplicity="1" />
+          <End Role="AbsentForAReason" Type="Self.AbsentForAReason" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff">
+              <PropertyRef Name="PersonnelNumber" />
+            </Principal>
+            <Dependent Role="AbsentForAReason">
+              <PropertyRef Name="PersonnelNumberAbsence" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AccountingForWorkingHours_DayCode">
+          <End Role="DayCode" Type="Self.DayCode" Multiplicity="1" />
+          <End Role="AccountingForWorkingHours" Type="Self.AccountingForWorkingHours" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DayCode">
+              <PropertyRef Name="Sign" />
+            </Principal>
+            <Dependent Role="AccountingForWorkingHours">
+              <PropertyRef Name="DayCodeAccounting" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AccountingForWorkingHours_Month">
+          <End Role="Month" Type="Self.Month" Multiplicity="1" />
+          <End Role="AccountingForWorkingHours" Type="Self.AccountingForWorkingHours" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Month">
+              <PropertyRef Name="MeaningMonth" />
+            </Principal>
+            <Dependent Role="AccountingForWorkingHours">
+              <PropertyRef Name="MonthAccounting" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AccountingForWorkingHours_Staff">
+          <End Role="Staff" Type="Self.Staff" Multiplicity="1" />
+          <End Role="AccountingForWorkingHours" Type="Self.AccountingForWorkingHours" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff">
+              <PropertyRef Name="PersonnelNumber" />
+            </Principal>
+            <Dependent Role="AccountingForWorkingHours">
+              <PropertyRef Name="PersonnelNumberAccounting" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DataForPayroll_HoursMonthlySummary">
+          <End Role="HoursMonthlySummary" Type="Self.HoursMonthlySummary" Multiplicity="1" />
+          <End Role="DataForPayroll" Type="Self.DataForPayroll" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HoursMonthlySummary">
+              <PropertyRef Name="NumberSum" />
+            </Principal>
+            <Dependent Role="DataForPayroll">
+              <PropertyRef Name="MonthSalary" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DataForPayroll_OffsettingAccount">
+          <End Role="OffsettingAccount" Type="Self.OffsettingAccount" Multiplicity="1" />
+          <End Role="DataForPayroll" Type="Self.DataForPayroll" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OffsettingAccount">
+              <PropertyRef Name="CodeOffsettingAccount" />
+            </Principal>
+            <Dependent Role="DataForPayroll">
+              <PropertyRef Name="OffsettingAccountSalary" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DataForPayroll_PaymentTypeCode">
+          <End Role="PaymentTypeCode" Type="Self.PaymentTypeCode" Multiplicity="1" />
+          <End Role="DataForPayroll" Type="Self.DataForPayroll" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PaymentTypeCode">
+              <PropertyRef Name="PaymentType" />
+            </Principal>
+            <Dependent Role="DataForPayroll">
+              <PropertyRef Name="PaymentTypeCodeSalary" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DataForPayroll_Staff">
+          <End Role="Staff" Type="Self.Staff" Multiplicity="1" />
+          <End Role="DataForPayroll" Type="Self.DataForPayroll" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff">
+              <PropertyRef Name="PersonnelNumber" />
+            </Principal>
+            <Dependent Role="DataForPayroll">
+              <PropertyRef Name="PersonnelNumberSalary" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Staff_Decryption">
+          <End Role="Decryption" Type="Self.Decryption" Multiplicity="1" />
+          <End Role="Staff" Type="Self.Staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Decryption">
+              <PropertyRef Name="MeaningDecryption" />
+            </Principal>
+            <Dependent Role="Staff">
+              <PropertyRef Name="DecryptionStaff" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Staff_Department">
+          <End Role="Department" Type="Self.Department" Multiplicity="1" />
+          <End Role="Staff" Type="Self.Staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="MeaningDepartment" />
+            </Principal>
+            <Dependent Role="Staff">
+              <PropertyRef Name="DepartmentStaff" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HoursMonthlySummary_Month">
+          <End Role="Month" Type="Self.Month" Multiplicity="1" />
+          <End Role="HoursMonthlySummary" Type="Self.HoursMonthlySummary" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Month">
+              <PropertyRef Name="MeaningMonth" />
+            </Principal>
+            <Dependent Role="HoursMonthlySummary">
+              <PropertyRef Name="MonthSum" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HoursMonthlySummary_Staff">
+          <End Role="Staff" Type="Self.Staff" Multiplicity="1" />
+          <End Role="HoursMonthlySummary" Type="Self.HoursMonthlySummary" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff">
+              <PropertyRef Name="PersonnelNumber" />
+            </Principal>
+            <Dependent Role="HoursMonthlySummary">
+              <PropertyRef Name="PersonnelNumberSum" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="Role1" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="RoleUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BD" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AbsentForAReason" EntityType="Self.AbsentForAReason" />
+          <EntitySet Name="AccountingForWorkingHours" EntityType="Self.AccountingForWorkingHours" />
+          <EntitySet Name="DataForPayroll" EntityType="Self.DataForPayroll" />
+          <EntitySet Name="DayCode" EntityType="Self.DayCode" />
+          <EntitySet Name="Decryption" EntityType="Self.Decryption" />
+          <EntitySet Name="Department" EntityType="Self.Department" />
+          <EntitySet Name="HoursMonthlySummary" EntityType="Self.HoursMonthlySummary" />
+          <EntitySet Name="Month" EntityType="Self.Month" />
+          <EntitySet Name="OffsettingAccount" EntityType="Self.OffsettingAccount" />
+          <EntitySet Name="PaymentTypeCode" EntityType="Self.PaymentTypeCode" />
+          <EntitySet Name="Role" EntityType="Self.Role" />
+          <EntitySet Name="Staff" EntityType="Self.Staff" />
+          <EntitySet Name="User" EntityType="Self.User" />
+          <AssociationSet Name="FK_AbsentForAReason_DayCode" Association="Self.FK_AbsentForAReason_DayCode">
+            <End Role="DayCode" EntitySet="DayCode" />
+            <End Role="AbsentForAReason" EntitySet="AbsentForAReason" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AbsentForAReason_Month" Association="Self.FK_AbsentForAReason_Month">
+            <End Role="Month" EntitySet="Month" />
+            <End Role="AbsentForAReason" EntitySet="AbsentForAReason" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AbsentForAReason_Staff" Association="Self.FK_AbsentForAReason_Staff">
+            <End Role="Staff" EntitySet="Staff" />
+            <End Role="AbsentForAReason" EntitySet="AbsentForAReason" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AccountingForWorkingHours_DayCode" Association="Self.FK_AccountingForWorkingHours_DayCode">
+            <End Role="DayCode" EntitySet="DayCode" />
+            <End Role="AccountingForWorkingHours" EntitySet="AccountingForWorkingHours" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AccountingForWorkingHours_Month" Association="Self.FK_AccountingForWorkingHours_Month">
+            <End Role="Month" EntitySet="Month" />
+            <End Role="AccountingForWorkingHours" EntitySet="AccountingForWorkingHours" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AccountingForWorkingHours_Staff" Association="Self.FK_AccountingForWorkingHours_Staff">
+            <End Role="Staff" EntitySet="Staff" />
+            <End Role="AccountingForWorkingHours" EntitySet="AccountingForWorkingHours" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DataForPayroll_HoursMonthlySummary" Association="Self.FK_DataForPayroll_HoursMonthlySummary">
+            <End Role="HoursMonthlySummary" EntitySet="HoursMonthlySummary" />
+            <End Role="DataForPayroll" EntitySet="DataForPayroll" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DataForPayroll_OffsettingAccount" Association="Self.FK_DataForPayroll_OffsettingAccount">
+            <End Role="OffsettingAccount" EntitySet="OffsettingAccount" />
+            <End Role="DataForPayroll" EntitySet="DataForPayroll" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DataForPayroll_PaymentTypeCode" Association="Self.FK_DataForPayroll_PaymentTypeCode">
+            <End Role="PaymentTypeCode" EntitySet="PaymentTypeCode" />
+            <End Role="DataForPayroll" EntitySet="DataForPayroll" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DataForPayroll_Staff" Association="Self.FK_DataForPayroll_Staff">
+            <End Role="Staff" EntitySet="Staff" />
+            <End Role="DataForPayroll" EntitySet="DataForPayroll" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Staff_Decryption" Association="Self.FK_Staff_Decryption">
+            <End Role="Decryption" EntitySet="Decryption" />
+            <End Role="Staff" EntitySet="Staff" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Staff_Department" Association="Self.FK_Staff_Department">
+            <End Role="Department" EntitySet="Department" />
+            <End Role="Staff" EntitySet="Staff" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HoursMonthlySummary_Month" Association="Self.FK_HoursMonthlySummary_Month">
+            <End Role="Month" EntitySet="Month" />
+            <End Role="HoursMonthlySummary" EntitySet="HoursMonthlySummary" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HoursMonthlySummary_Staff" Association="Self.FK_HoursMonthlySummary_Staff">
+            <End Role="Staff" EntitySet="Staff" />
+            <End Role="HoursMonthlySummary" EntitySet="HoursMonthlySummary" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Role" Association="Self.FK_User_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище BD_KPContainer" CdmEntityContainer="BD">
+          <EntitySetMapping Name="AbsentForAReason">
+            <EntityTypeMapping TypeName="BD_KP.AbsentForAReason">
+              <MappingFragment StoreEntitySet="AbsentForAReason">
+                <ScalarProperty Name="NumberAbsence" ColumnName="NumberAbsence" />
+                <ScalarProperty Name="PersonnelNumberAbsence" ColumnName="PersonnelNumberAbsence" />
+                <ScalarProperty Name="CodeAbsence" ColumnName="CodeAbsence" />
+                <ScalarProperty Name="DaysAbsence" ColumnName="DaysAbsence" />
+                <ScalarProperty Name="HoursAbsence" ColumnName="HoursAbsence" />
+                <ScalarProperty Name="MonthAbsence" ColumnName="MonthAbsence" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AccountingForWorkingHours">
+            <EntityTypeMapping TypeName="BD_KP.AccountingForWorkingHours">
+              <MappingFragment StoreEntitySet="AccountingForWorkingHours">
+                <ScalarProperty Name="NumberAccounting" ColumnName="NumberAccounting" />
+                <ScalarProperty Name="PersonnelNumberAccounting" ColumnName="PersonnelNumberAccounting" />
+                <ScalarProperty Name="DaysAccounting" ColumnName="DaysAccounting" />
+                <ScalarProperty Name="DayCodeAccounting" ColumnName="DayCodeAccounting" />
+                <ScalarProperty Name="HoursAccounting" ColumnName="HoursAccounting" />
+                <ScalarProperty Name="MonthAccounting" ColumnName="MonthAccounting" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DataForPayroll">
+            <EntityTypeMapping TypeName="BD_KP.DataForPayroll">
+              <MappingFragment StoreEntitySet="DataForPayroll">
+                <ScalarProperty Name="NumberSalary" ColumnName="NumberSalary" />
+                <ScalarProperty Name="PersonnelNumberSalary" ColumnName="PersonnelNumberSalary" />
+                <ScalarProperty Name="PaymentTypeCodeSalary" ColumnName="PaymentTypeCodeSalary" />
+                <ScalarProperty Name="OffsettingAccountSalary" ColumnName="OffsettingAccountSalary" />
+                <ScalarProperty Name="MonthSalary" ColumnName="MonthSalary" />
+                <ScalarProperty Name="DaysSalary" ColumnName="DaysSalary" />
+                <ScalarProperty Name="HoursSalary" ColumnName="HoursSalary" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DayCode">
+            <EntityTypeMapping TypeName="BD_KP.DayCode">
+              <MappingFragment StoreEntitySet="DayCode">
+                <ScalarProperty Name="Sign" ColumnName="Sign" />
+                <ScalarProperty Name="Letter" ColumnName="Letter" />
+                <ScalarProperty Name="Decryption" ColumnName="Decryption" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Decryption">
+            <EntityTypeMapping TypeName="BD_KP.Decryption">
+              <MappingFragment StoreEntitySet="Decryption">
+                <ScalarProperty Name="MeaningDecryption" ColumnName="MeaningDecryption" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Department">
+            <EntityTypeMapping TypeName="BD_KP.Department">
+              <MappingFragment StoreEntitySet="Department">
+                <ScalarProperty Name="MeaningDepartment" ColumnName="MeaningDepartment" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HoursMonthlySummary">
+            <EntityTypeMapping TypeName="BD_KP.HoursMonthlySummary">
+              <MappingFragment StoreEntitySet="HoursMonthlySummary">
+                <ScalarProperty Name="NumberSum" ColumnName="NumberSum" />
+                <ScalarProperty Name="PersonnelNumberSum" ColumnName="PersonnelNumberSum" />
+                <ScalarProperty Name="MonthSum" ColumnName="MonthSum" />
+                <ScalarProperty Name="SumDays" ColumnName="SumDays" />
+                <ScalarProperty Name="SumHours" ColumnName="SumHours" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Month">
+            <EntityTypeMapping TypeName="BD_KP.Month">
+              <MappingFragment StoreEntitySet="Month">
+                <ScalarProperty Name="MeaningMonth" ColumnName="MeaningMonth" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OffsettingAccount">
+            <EntityTypeMapping TypeName="BD_KP.OffsettingAccount">
+              <MappingFragment StoreEntitySet="OffsettingAccount">
+                <ScalarProperty Name="CodeOffsettingAccount" ColumnName="CodeOffsettingAccount" />
+                <ScalarProperty Name="DecryptionOffsettingAccount" ColumnName="DecryptionOffsettingAccount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PaymentTypeCode">
+            <EntityTypeMapping TypeName="BD_KP.PaymentTypeCode">
+              <MappingFragment StoreEntitySet="PaymentTypeCode">
+                <ScalarProperty Name="PaymentType" ColumnName="PaymentType" />
+                <ScalarProperty Name="DecryptionPaymentType" ColumnName="DecryptionPaymentType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Role">
+            <EntityTypeMapping TypeName="BD_KP.Role">
+              <MappingFragment StoreEntitySet="Role">
+                <ScalarProperty Name="Role1" ColumnName="Role" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Staff">
+            <EntityTypeMapping TypeName="BD_KP.Staff">
+              <MappingFragment StoreEntitySet="Staff">
+                <ScalarProperty Name="PersonnelNumber" ColumnName="PersonnelNumber" />
+                <ScalarProperty Name="Initials" ColumnName="Initials" />
+                <ScalarProperty Name="DecryptionStaff" ColumnName="DecryptionStaff" />
+                <ScalarProperty Name="PositionStaff" ColumnName="PositionStaff" />
+                <ScalarProperty Name="DepartmentStaff" ColumnName="DepartmentStaff" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User">
+            <EntityTypeMapping TypeName="BD_KP.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="UserNumber" ColumnName="UserNumber" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="FIOUser" ColumnName="FIOUser" />
+                <ScalarProperty Name="RoleUser" ColumnName="RoleUser" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

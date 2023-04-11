@@ -1,0 +1,118 @@
+﻿<Page x:Class="КП_МДК._03.RegistrationEditor"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:КП_МДК._03"
+      mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="800"
+      Title="RegistrationEditor" IsVisibleChanged="Page_IsVisibleChanged">
+
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="16*"/>
+            <RowDefinition Height="251*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="0*"/>
+        </Grid.ColumnDefinitions>
+        <Image Source="Drawings/admin.png" HorizontalAlignment="Left" Width="61" Margin="249,5,0,0" RenderTransformOrigin="-0.208,0.547" Grid.RowSpan="2" Height="65" VerticalAlignment="Top">
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="0.818"/>
+                    <TranslateTransform X="-0.037" Y="-0.606"/>
+                </TransformGroup>
+            </Image.RenderTransform>
+        </Image>
+        <TextBlock Text="Окно Администратора" FontSize="24" HorizontalAlignment="Left" VerticalAlignment="Top" FontFamily="Franklin Gothic Heavy" Foreground="Black" FontWeight="Bold" TextDecorations="{x:Null}" Height="31" Width="291" Margin="304,20,0,0" Grid.RowSpan="2" />
+        <Border BorderBrush="#FF0514F4" BorderThickness="1" HorizontalAlignment="Center" Height="71" VerticalAlignment="Top" Width="800" Grid.RowSpan="2"/>
+        <Button x:Name="ButtonPersonnel" Click="ButtonPersonnelClick" Margin="10,8,0,0" BorderBrush="#FF0514F4" Background="White" Foreground="Black" Grid.RowSpan="2" HorizontalAlignment="Left" Width="70" Height="54" VerticalAlignment="Top">
+            <Button.ToolTip>
+                <ToolTip FontFamily="Comic Sans MS" BorderBrush="#FF2432F6" Foreground="#FF2432F6" FontSize="14" Background="White">
+                    Данные о сотрудниках
+                </ToolTip>
+            </Button.ToolTip>
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </Button.Resources>
+            <StackPanel Orientation="Horizontal" Height="52">
+                <Image Source="Drawings/personnel.png" Width="56" Height="46"/>
+            </StackPanel>
+        </Button>
+        <Button x:Name="ButtonTimesheet" Click="ButtonTimesheetlClick" Margin="117,8,0,0" BorderBrush="#FF0514F4" Background="White" Height="54" VerticalAlignment="Top" HorizontalAlignment="Left" Width="70" Grid.RowSpan="2">
+            <Button.ToolTip>
+                <ToolTip FontFamily="Comic Sans MS" BorderBrush="#FF2432F6" Foreground="#FF2432F6" FontSize="14" Background="White">
+                    Табель учёта рабочего времени
+                </ToolTip>
+            </Button.ToolTip>
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </Button.Resources>
+            <StackPanel Orientation="Horizontal" Height="52">
+                <Image Source="Drawings/timesheet.png" Width="54" Height="46"/>
+            </StackPanel>
+        </Button>
+        <Button x:Name="ButtonArchive" Click="ButtonArchivelClick" Margin="620,9,0,0" BorderBrush="#FF0514F4" Background="White" Height="54" VerticalAlignment="Top" Grid.RowSpan="2" HorizontalAlignment="Left" Width="70">
+            <Button.ToolTip>
+                <ToolTip FontFamily="Comic Sans MS" BorderBrush="#FF2432F6" Foreground="#FF2432F6" FontSize="14" Background="White">
+                    Вывод данных в excel
+                </ToolTip>
+            </Button.ToolTip>
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </Button.Resources>
+            <StackPanel Orientation="Horizontal" Height="52">
+                <Image Source="Drawings/archive.png" Width="54" Height="46"/>
+            </StackPanel>
+        </Button>
+        <Button x:Name="ButtonRegistration" Click="ButtonRegistrationClick" Margin="720,8,0,0" BorderBrush="#FF0514F4" Background="White" Height="54" VerticalAlignment="Top" Grid.RowSpan="2" HorizontalAlignment="Left" Width="70">
+            <Button.ToolTip>
+                <ToolTip FontFamily="Comic Sans MS" BorderBrush="#FF2432F6" Foreground="#FF2432F6" FontSize="14" Background="White">
+                    Зарегистрировать пользователя в программу
+                </ToolTip>
+            </Button.ToolTip>
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </Button.Resources>
+            <StackPanel Orientation="Horizontal" Height="52">
+                <Image Source="Drawings/registration.png" Width="54" Height="46"/>
+            </StackPanel>
+        </Button>
+
+        <Button Content="Удаление пользователя" Name="ButtonRemoval" Width="304" Margin="0,59,0,0" Click="ButtonRemovalClick" FontFamily="Comic Sans MS" FontSize="22" Background="#FF0514F4" Foreground="#FFF7F3F3" HorizontalAlignment="Center" Grid.Row="1" Height="35" VerticalAlignment="Top">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="10" />
+                </Style>
+            </Button.Resources>
+        </Button>
+
+        <DataGrid x:Name="DGUser" SelectionChanged="DGUser_SelectionChanged" AutoGenerateColumns="false" Grid.Row="1" HorizontalAlignment="Center" Width="800" Height="378" VerticalAlignment="Top" Background="White" BorderBrush="#FF0514F4" Foreground="#FF0514F4" Margin="0,130,0,0">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Логин" Binding="{Binding Path=Login}" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Пароль" Binding="{Binding Path=Password}" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Header="ФИО" Binding="{Binding Path=FIOUser}" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Роль" Binding="{Binding Path=RoleUser}" Width="*"></DataGridTextColumn>
+
+                <DataGridTemplateColumn Width="auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <!--<Button Content="Редактировать" Name="Redakt1" Click="Redakt1_Click"></Button>-->
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Page>

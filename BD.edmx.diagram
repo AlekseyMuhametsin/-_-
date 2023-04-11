@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="b9ea369721004d32a97742ed84bfb1f5" Name="Diagram1">
+        <EntityTypeShape EntityType="BD_KP.AbsentForAReason" Width="1.5" PointX="5.25" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BD_KP.AccountingForWorkingHours" Width="1.5" PointX="8.25" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BD_KP.DataForPayroll" Width="1.5" PointX="5.25" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BD_KP.DayCode" Width="1.5" PointX="3" PointY="14.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BD_KP.Decryption" Width="1.5" PointX="0.75" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BD_KP.Department" Width="1.5" PointX="0.75" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BD_KP.HoursMonthlySummary" Width="1.5" PointX="5.25" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="BD_KP.Month" Width="1.5" PointX="3" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BD_KP.OffsettingAccount" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="BD_KP.PaymentTypeCode" Width="1.5" PointX="3" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BD_KP.Role" Width="1.5" PointX="7.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BD_KP.Staff" Width="1.5" PointX="3" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BD_KP.User" Width="1.5" PointX="10" PointY="0.875" IsExpanded="true" />
+        <AssociationConnector Association="BD_KP.FK_AbsentForAReason_DayCode" ManuallyRouted="false" />
+        <AssociationConnector Association="BD_KP.FK_AbsentForAReason_Month" ManuallyRouted="false" />
+        <AssociationConnector Association="BD_KP.FK_AbsentForAReason_Staff" ManuallyRouted="false" />
+        <AssociationConnector Association="BD_KP.FK_AccountingForWorkingHours_DayCode" ManuallyRouted="false" />
+        <AssociationConnector Association="BD_KP.FK_AccountingForWorkingHours_Month" ManuallyRouted="false" />
+        <AssociationConnector Association="BD_KP.FK_AccountingForWorkingHours_Staff" ManuallyRouted="false" />
+        <AssociationConnector Association="BD_KP.FK_DataForPayroll_HoursMonthlySummary" ManuallyRouted="false" />
+        <AssociationConnector Association="BD_KP.FK_DataForPayroll_OffsettingAccount" ManuallyRouted="false" />
+        <AssociationConnector Association="BD_KP.FK_DataForPayroll_PaymentTypeCode" ManuallyRouted="false" />
+        <AssociationConnector Association="BD_KP.FK_DataForPayroll_Staff" ManuallyRouted="false" />
+        <AssociationConnector Association="BD_KP.FK_Staff_Decryption" ManuallyRouted="false" />
+        <AssociationConnector Association="BD_KP.FK_Staff_Department" ManuallyRouted="false" />
+        <AssociationConnector Association="BD_KP.FK_HoursMonthlySummary_Month" ManuallyRouted="false" />
+        <AssociationConnector Association="BD_KP.FK_HoursMonthlySummary_Staff" ManuallyRouted="false" />
+        <AssociationConnector Association="BD_KP.FK_User_Role" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

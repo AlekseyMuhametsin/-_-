@@ -1,0 +1,130 @@
+﻿<Page x:Class="КП_МДК._03.Employee"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:КП_МДК._03"
+      mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="800"
+      Title="Employee" IsVisibleChanged="Page_IsVisibleChanged">
+
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="16*"/>
+            <RowDefinition Height="251*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="0*"/>
+        </Grid.ColumnDefinitions>
+        <Image Source="Drawings/admin.png" HorizontalAlignment="Left" Width="61" Margin="249,5,0,0" RenderTransformOrigin="-0.208,0.547" Grid.RowSpan="2" Height="65" VerticalAlignment="Top">
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="0.818"/>
+                    <TranslateTransform X="-0.037" Y="-0.606"/>
+                </TransformGroup>
+            </Image.RenderTransform>
+        </Image>
+        <TextBlock Text="Окно Администратора" FontSize="24" HorizontalAlignment="Left" VerticalAlignment="Top" FontFamily="Franklin Gothic Heavy" Foreground="Black" FontWeight="Bold" TextDecorations="{x:Null}" Height="31" Width="291" Margin="304,20,0,0" Grid.RowSpan="2" />
+        <Border BorderBrush="#FF0514F4" BorderThickness="1" HorizontalAlignment="Center" Height="71" VerticalAlignment="Top" Width="800" Grid.RowSpan="2"/>
+        <Button x:Name="ButtonPersonnel" Click="ButtonPersonnelClick" Margin="10,8,0,0" BorderBrush="#FF0514F4" Background="White" Foreground="Black" Grid.RowSpan="2" HorizontalAlignment="Left" Width="70" Height="54" VerticalAlignment="Top">
+            <Button.ToolTip>
+                <ToolTip FontFamily="Comic Sans MS" BorderBrush="#FF2432F6" Foreground="#FF2432F6" FontSize="14" Background="White">
+                    Данные о сотрудниках
+                </ToolTip>
+            </Button.ToolTip>
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </Button.Resources>
+            <StackPanel Orientation="Horizontal" Height="52">
+                <Image Source="Drawings/personnel.png" Width="56" Height="46"/>
+            </StackPanel>
+        </Button>
+        <Button x:Name="ButtonTimesheet" Click="ButtonTimesheetlClick" Margin="117,8,0,0" BorderBrush="#FF0514F4" Background="White" Height="54" VerticalAlignment="Top" HorizontalAlignment="Left" Width="70" Grid.RowSpan="2">
+            <Button.ToolTip>
+                <ToolTip FontFamily="Comic Sans MS" BorderBrush="#FF2432F6" Foreground="#FF2432F6" FontSize="14" Background="White">
+                    Табель учёта рабочего времени
+                </ToolTip>
+            </Button.ToolTip>
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </Button.Resources>
+            <StackPanel Orientation="Horizontal" Height="52">
+                <Image Source="Drawings/timesheet.png" Width="54" Height="46"/>
+            </StackPanel>
+        </Button>
+        <Button x:Name="ButtonArchive" Click="ButtonArchivelClick" Margin="620,9,0,0" BorderBrush="#FF0514F4" Background="White" Height="54" VerticalAlignment="Top" Grid.RowSpan="2" HorizontalAlignment="Left" Width="70">
+            <Button.ToolTip>
+                <ToolTip FontFamily="Comic Sans MS" BorderBrush="#FF2432F6" Foreground="#FF2432F6" FontSize="14" Background="White">
+                    Вывод данных в excel
+                </ToolTip>
+            </Button.ToolTip>
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </Button.Resources>
+            <StackPanel Orientation="Horizontal" Height="52">
+                <Image Source="Drawings/archive.png" Width="54" Height="46"/>
+            </StackPanel>
+        </Button>
+        <Button x:Name="ButtonRegistration" Click="ButtonRegistrationClick" Margin="720,8,0,0" BorderBrush="#FF0514F4" Background="White" Height="54" VerticalAlignment="Top" Grid.RowSpan="2" HorizontalAlignment="Left" Width="70">
+            <Button.ToolTip>
+                <ToolTip FontFamily="Comic Sans MS" BorderBrush="#FF2432F6" Foreground="#FF2432F6" FontSize="14" Background="White">
+                    Зарегистрировать пользователя в программу
+                </ToolTip>
+            </Button.ToolTip>
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </Button.Resources>
+            <StackPanel Orientation="Horizontal" Height="52">
+                <Image Source="Drawings/registration.png" Width="54" Height="46"/>
+            </StackPanel>
+        </Button>
+
+        <Button Content="Добавить сотрудника" Name="ButtonNewStaff" Margin="10,63,0,0" FontFamily="Comic Sans MS" FontSize="20" Width="222" Click="ButtonNewStaffClick" Grid.Row="1" BorderBrush="Black" Background="#FF0514F4" Foreground="White" HorizontalAlignment="Left" Height="32" VerticalAlignment="Top">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="10" />
+                </Style>
+            </Button.Resources>
+        </Button>
+        <Button Content="Редактировать" Name="ButtonEdit" Margin="566,63,0,0" FontFamily="Comic Sans MS" FontSize="20" Width="224" Click="ButtonEditClick" Grid.Row="1" Background="#FF0514F4" BorderBrush="Black" OpacityMask="White" Foreground="White" HorizontalAlignment="Left" Height="32" VerticalAlignment="Top">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="10" />
+                </Style>
+            </Button.Resources>
+        </Button>
+
+        <DataGrid x:Name="DGridStaff" SelectionChanged="DGridStaff_SelectionChanged" AutoGenerateColumns="false" Grid.Row="1" HorizontalAlignment="Center" Width="800" Margin="0,163,0,0" Height="341" VerticalAlignment="Top" Background="White" BorderBrush="#FF0514F4" Foreground="#FF0514F4">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Табельный номер" Binding="{Binding Path=PersonnelNumber}" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Инициалы" Binding="{Binding Path=Initials}" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Расшифровка" Binding="{Binding Path=PositionStaff}" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Должность" Binding="{Binding Path=DecryptionStaff}" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Отдел" Binding="{Binding Path=DepartmentStaff}" Width="*"></DataGridTextColumn>
+
+                <DataGridTemplateColumn Width="auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <!--<Button Content="Редактировать" Name="Redakt1" Click="Redakt1_Click"></Button>-->
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <TextBlock Text="Сотрудники"  HorizontalAlignment="Center" Height="55" Margin="0,52,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="323" FontFamily="Comic Sans MS" FontSize="36" TextAlignment="Center" Grid.Row="1" Foreground="#FF0514F4"/>
+        <TextBox IsMouseCapturedChanged="TBStaff_IsMouseCapturedChanged" Margin="238,112,0,0" TextWrapping="Wrap" Text="Поиск сотрудников" TextChanged="Poisk_Staff" Name="TBStaff" FontFamily="Comic Sans MS" FontSize="20" TextAlignment="Center" Foreground="#FF929292" Grid.Row="1" BorderBrush="Black" Height="32" VerticalAlignment="Top" HorizontalAlignment="Left" Width="324"/>
+
+
+    </Grid>
+</Page>
